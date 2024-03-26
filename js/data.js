@@ -9,7 +9,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{ 
-        marca: 'Audi', 
+        marca: 'AUDI', 
         modelo: 'A4', 
         year: 2020, 
         precio: 40000, 
@@ -18,7 +18,7 @@ const autos = [
         transmision: 'automatico' 
     },
 	{
-		marca: 'Ford',
+		marca: 'FORD',
 		modelo: 'Mustang',
 		year: 2015,
 		precio: 20000,
@@ -27,7 +27,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{ 
-        marca: 'Audi', 
+        marca: 'AUDI', 
         modelo: 'A6', 
         year: 2020, 
         precio: 35000, 
@@ -45,7 +45,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{
-		marca: 'Mercedes Benz',
+		marca: 'MERCEDEZ BENZ',
 		modelo: 'Clase C',
 		year: 2015,
 		precio: 25000,
@@ -54,7 +54,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{
-		marca: 'Chevrolet',
+		marca: 'CHEVROLET',
 		modelo: 'Camaro',
 		year: 2018,
 		precio: 60000,
@@ -63,7 +63,7 @@ const autos = [
 		transmision: 'manual'
 	},
 	{ 
-        marca: 'Ford', 
+        marca: 'FORD', 
         modelo: 'Mustang', 
         year: 2019, 
         precio: 80000, 
@@ -72,7 +72,7 @@ const autos = [
         transmision: 'manual' 
     },
 	{
-		marca: 'Dodge',
+		marca: 'DODGE',
 		modelo: 'Challenger',
 		year: 2020,
 		precio: 40000,
@@ -81,7 +81,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{ 
-        marca: 'Audi', 
+        marca: 'AUDI', 
         modelo: 'A3', 
         year: 2017, 
         precio: 55000, 
@@ -91,7 +91,7 @@ const autos = [
         'manual' 
     },
 	{
-		marca: 'Dodge',
+		marca: 'DODGE',
 		modelo: 'Challenger',
 		year: 2020,
 		precio: 25000,
@@ -100,7 +100,7 @@ const autos = [
 		transmision: 'manual'
 	},
 	{
-		marca: 'Mercedes Benz',
+		marca: 'MERCEDEZ BENZ',
 		modelo: 'Clase C',
 		year: 2018,
 		precio: 45000,
@@ -118,7 +118,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{ 
-        marca: 'Ford', 
+        marca: 'FORD', 
         modelo: 'Mustang', 
         year: 2017, 
         precio: 60000, 
@@ -127,7 +127,7 @@ const autos = [
         transmision: 'manual' 
     },
 	{
-		marca: 'Dodge',
+		marca: 'DODGE',
 		modelo: 'Challenger',
 		year: 2015,
 		precio: 35000,
@@ -154,7 +154,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{
-		marca: 'Mercedes Benz',
+		marca: 'MERCEDEZ BENZ',
 		modelo: 'Clase C',
 		year: 2018,
 		precio: 40000,
@@ -163,7 +163,7 @@ const autos = [
 		transmision: 'automatico'
 	},
 	{ 
-        marca: 'Audi', 
+        marca: 'AUDI', 
         modelo: 'A4', 
         year: 2016, 
         precio: 30000, 
