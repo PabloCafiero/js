@@ -7,6 +7,11 @@ let resultado = autos;
 let marcaFiltrada =0;
 let yearFiltrada =0;
 
+let busqueda = 0;
+let busqueda1 = 0;
+let busqueda2 = 0;
+let busqueda3 = 0;
+
 /* 
 autos.forEach(auto =>{
     document.body.innerHTML += ` 
@@ -24,8 +29,11 @@ autos.forEach(auto =>{
 });
  */
 
-console.log("asd")
 
+///////////////////////////////////////////////////
+
+
+// INGRESO MARCA
 const marcaForm = document.querySelector("#marca-form");
 const marcaInput = document.querySelector("#marca-input");
 
@@ -36,55 +44,46 @@ marcaForm.addEventListener("submit", (e) => {
 });
 
 
-
-
+// INGRESO AÑO
 const yearForm = document.querySelector("#year-form");
 const yearInput = document.querySelector("#year-input");
 
 yearForm.addEventListener("submit", (e) => {
     e.preventDefault();
-/*     console.log(yearInput.value) */
     filtrarYear(yearInput.value);
 });
 
 
-
-
+// INGRESO PRECIOMAX
 const priceMaxForm = document.querySelector("#pricemax-form");
 const priceMaxInput = document.querySelector("#pricemax-input");
 
-priceMaxForm.addEventListener("submit", (e) => {
+priceMaxForm.addEventListener("input", (e) => {
     e.preventDefault();
     filtrarPrecioMax(priceMaxInput.value);
 });
 
-
-// INGRESO DE VARIABLES
-/* do {
-    marca = prompt("Ingresar Marca").toUpperCase();
-    if(marca == "AUDI" || marca == "BMW" || marca == "MERCEDEZ BENZ" || marca == "FORD" || marca == "DODGE" || marca == "CHEVROLET"){
-    condicion = 1;
-    console.log("Marca: " + marca);
-    }else{
-    condicion = 0; 
-    console.log("No existen autos de esa marca")
-    }
-}while(condicion == 0);
-filtrarMarca();
-
-let year =   Number(prompt("Ingresar Año"))
-console.log("-----------------------------------------------------");
-console.log("Marca: " + marca + " Año: " + year);
-filtrarYear();
-
-let precioMaximo = Number(prompt("Ingrese el precio Máximo"))
-console.log("-----------------------------------------------------");
-console.log("Marca: " + marca + " Año: " + year + "Precio Máximo: " + precioMaximo);
-filtrarPrecio();
- */
+///////////////////////////////////////////////////
 
 
+function comprobacion(){
+    if(marcaInput.value != "")busquedaMarca=1;else busquedaMarca=0;
+     
+}
+
+
+
+
+///////////////////////////////////////////////////
 // MUESTREO
+const seccionListaAutos = document.querySelector(".lista-busqueda");
+
+let listaAutos = document.createElement("ul");
+listaAutos.classList.add("listaAutos")
+
+seccionListaAutos.append(listaAutos)
+
+imprimirAutos()
 
 function mostrarAutos(automoviles){
 
@@ -93,50 +92,60 @@ function mostrarAutos(automoviles){
     });
 }
 
+function imprimirAutos(automoviles){
+
+    if(busqueda1==0 && busqueda2==0 && busqueda3==0)
+    busqueda =0;
+
+    if(busqueda==1){
+        if(automoviles.length>0){
+            
+            listaAutos.innerHTML = ``
+            automoviles.forEach(auto => {
+                listaAutos.innerHTML += ` <li class="autos"> ${auto.marca} -  ${auto.modelo} - ${auto.year} - $${auto.precio} </li>` ;
+            }); 
+        }else{listaAutos.innerHTML = ` <li class="error"> No hay resultados </li>`
+    resultado = autos;
+    }
+
+    }else{
+        autos.forEach(auto => {
+            listaAutos.innerHTML += ` <li class="autos"> ${auto.marca} -  ${auto.modelo} - ${auto.year} - $${auto.precio} </li>` ;
+        });
+    }
+}
+
+
+
 // FILTRO
 
 function filtrarMarca(marca){
+        resultado = resultado.filter((auto) => auto.marca == marca)
 
-        if(marcaAnterior != marca && yearFiltrada == 0){
-            resultado = autos.filter((auto) => auto.marca == marca)
-            marcaAnterior = marca;
-            marcaFiltrada = 1;
-        }else{
-            resultado = resultado.filter((auto) => auto.marca == marca)
-        }
+        if(marca=="")busqueda1=0
+        else
+        busqueda1=1;
+        busqueda =1
 
-
-        if(resultado.length>0){
-            mostrarAutos(resultado) 
-        }else
-        { console.log("No hay resultados");}
+        imprimirAutos(resultado)
 }
 
 function filtrarYear(year){
 
-    console.log(marcaFiltrada)
+   resultado = resultado.filter((auto) => auto.year == year)
 
-    if(yearAnterior != year && marcaFiltrada == 0){
-        resultado = autos.filter((auto) => auto.year == year)
-        yearAnterior = year;
-        yearFiltrada = 1;
-    }else{
-        resultado = resultado.filter((auto) => auto.year == year)
-    }
+   if(year=="")busqueda2=0
+   else
+   busqueda2=1;
+    busqueda =1
 
-/*     resultado = resultado.filter((auto) => auto.year == year)
- */
-    if(resultado.length>0){
-        mostrarAutos(resultado) 
-    }else
-    {console.log("No hay resultados");}
+   imprimirAutos(resultado)
 }
 
 function filtrarPrecioMax(precioMaximo){
     resultado = resultado.filter((auto) => auto.precio <= precioMaximo)
-    if(resultado.length>0){
-        mostrarAutos(resultado) 
-    }else
-    { console.log("No hay resultados");}
+
+    imprimirAutos(resultado)
+
 }
 
