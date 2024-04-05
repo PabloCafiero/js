@@ -1,46 +1,34 @@
-let marcaAnterior = "ningunamarca";
-let yearAnterior = 0;
-let marca;
 let condicion;
 let resultado = autos;
 
-let marcaFiltrada =0;
-let yearFiltrada =0;
+let busqueda=0;
 
-let busqueda = 0;
-let busqueda1 = 0;
-let busqueda2 = 0;
-let busqueda3 = 0;
+let busquedaMarca=0;
+let busquedaYear=0;
+let busquedaPrecioMax =0;
 
-/* 
-autos.forEach(auto =>{
-    document.body.innerHTML += ` 
-    <div class="card" style="width: 18rem;" class="col" >
-    <img src="./img/foto auto.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">${auto.marca} ${auto.modelo}</h5>
-      <p class="card-text">Año ${auto.year }</p>
-      <p class="card-text">$ ${auto.precio }</p>
-
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
-` 
-});
- */
+let marca="";
+let year;
+let precioMaximo;
 
 
 ///////////////////////////////////////////////////
-
-
 // INGRESO MARCA
 const marcaForm = document.querySelector("#marca-form");
 const marcaInput = document.querySelector("#marca-input");
 
-marcaForm.addEventListener("submit", (e) => {
+marcaForm.addEventListener("input", (e) => {
     e.preventDefault();
     marca = marcaInput.value.toUpperCase();
-    filtrarMarca(marca);
+
+    if(marca !="")
+    busquedaMarca=1;
+    else{
+    busquedaMarca=0;
+    resultado = autos;
+    }
+
+    filtro();
 });
 
 
@@ -48,9 +36,18 @@ marcaForm.addEventListener("submit", (e) => {
 const yearForm = document.querySelector("#year-form");
 const yearInput = document.querySelector("#year-input");
 
-yearForm.addEventListener("submit", (e) => {
+yearForm.addEventListener("input", (e) => {
     e.preventDefault();
-    filtrarYear(yearInput.value);
+    year = yearInput.value
+
+    if(year !="")
+    busquedaYear=1;
+    else{
+    busquedaYear=0;
+    resultado = autos;
+    }
+
+    filtro();
 });
 
 
@@ -60,55 +57,64 @@ const priceMaxInput = document.querySelector("#pricemax-input");
 
 priceMaxForm.addEventListener("input", (e) => {
     e.preventDefault();
-    filtrarPrecioMax(priceMaxInput.value);
+    
+    precioMaximo = priceMaxInput.value
+
+    if(precioMaximo !="")
+    busquedaPrecioMax=1;
+    else{
+    busquedaPrecioMax=0;
+    resultado = autos;
+    }
+
+    filtro();
 });
-
-///////////////////////////////////////////////////
-
-
-function comprobacion(){
-    if(marcaInput.value != "")busquedaMarca=1;else busquedaMarca=0;
-     
-}
-
-
 
 
 ///////////////////////////////////////////////////
 // MUESTREO
 const seccionListaAutos = document.querySelector(".lista-busqueda");
 
-let listaAutos = document.createElement("ul");
+const listaAutos = document.createElement("ul");
 listaAutos.classList.add("listaAutos")
 
 seccionListaAutos.append(listaAutos)
 
+const tituloListaBusqueda = document.querySelector("#titulo-lista-busqueda")
+
 imprimirAutos()
 
-function mostrarAutos(automoviles){
+
+/* function mostrarAutos(automoviles){
 
     automoviles.forEach(auto => {
         console.log(auto.marca + " - " + auto.modelo + " - " + auto.year + " - " + auto.puertas + " Puertas - $" + auto.precio)
     });
-}
+} */
 
 function imprimirAutos(automoviles){
 
-    if(busqueda1==0 && busqueda2==0 && busqueda3==0)
-    busqueda =0;
+
+    if(busquedaMarca==0 &&busquedaYear==0)
+        busqueda=0;
+    else
+        busqueda=1;
 
     if(busqueda==1){
+        tituloListaBusqueda.innerHTML = `<h4 id="titulo-lista-busqueda">Busqueda</h4>`
         if(automoviles.length>0){
-            
-            listaAutos.innerHTML = ``
+            listaAutos.innerHTML = ``;
             automoviles.forEach(auto => {
                 listaAutos.innerHTML += ` <li class="autos"> ${auto.marca} -  ${auto.modelo} - ${auto.year} - $${auto.precio} </li>` ;
-            }); 
+            });
+
         }else{listaAutos.innerHTML = ` <li class="error"> No hay resultados </li>`
     resultado = autos;
     }
 
     }else{
+        tituloListaBusqueda.innerHTML = `<h4 id="titulo-lista-busqueda">Catalogo</h4>`
+        listaAutos.innerHTML = ``;
         autos.forEach(auto => {
             listaAutos.innerHTML += ` <li class="autos"> ${auto.marca} -  ${auto.modelo} - ${auto.year} - $${auto.precio} </li>` ;
         });
@@ -116,36 +122,37 @@ function imprimirAutos(automoviles){
 }
 
 
-
 // FILTRO
 
+function filtro(){
+
+    if(busquedaMarca==1)
+    filtrarMarca(marca)
+
+    if(busquedaYear==1)
+    filtrarYear(year)
+
+    if(busquedaPrecioMax==1)
+    filtrarPrecioMax(precioMaximo)
+
+    imprimirAutos(resultado)
+}
+
+
 function filtrarMarca(marca){
-        resultado = resultado.filter((auto) => auto.marca == marca)
 
-        if(marca=="")busqueda1=0
-        else
-        busqueda1=1;
-        busqueda =1
-
-        imprimirAutos(resultado)
+    resultado = resultado.filter((auto) => auto.marca == marca)
 }
 
 function filtrarYear(year){
 
-   resultado = resultado.filter((auto) => auto.year == year)
+    
 
-   if(year=="")busqueda2=0
-   else
-   busqueda2=1;
-    busqueda =1
+    resultado = resultado.filter((auto) => auto.year == year)
 
-   imprimirAutos(resultado)
 }
 
 function filtrarPrecioMax(precioMaximo){
     resultado = resultado.filter((auto) => auto.precio <= precioMaximo)
-
-    imprimirAutos(resultado)
-
 }
 
